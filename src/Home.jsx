@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+const $ = window.$;
 
 class Home extends Component {
   constructor(props) {
@@ -18,9 +19,8 @@ class Home extends Component {
       key: this.state.i,
       item: this.state.item
     });
-
+    $("#todo").val("");
     this.setState({ i: this.state.i + 1 });
-    event.target.value = "";
     event.preventDefault();
   }
 
@@ -63,6 +63,7 @@ class Home extends Component {
               className="form-control"
               type="text"
               name="todo"
+              id="todo"
               onChange={event => this.setState({ item: event.target.value })}
             />
             <input
