@@ -11,7 +11,9 @@ class Home extends Component {
       itemList: [],
       i: 1
     };
+
     this.addTodo = this.addTodo.bind(this);
+    this.removeTodo = this.removeTodo.bind(this);
   }
 
   addTodo(event) {
@@ -24,6 +26,16 @@ class Home extends Component {
     event.preventDefault();
   }
 
+  removeTodo(event) {
+    const id = event.target.id;
+    const remainder = this.state.itemList.filter(todo => {
+      if (todo.key != id) {
+        return true;
+      }
+    });
+    this.setState({ itemList: remainder });
+  }
+
   render() {
     //object destrucation.
     const { children } = this.props;
@@ -33,6 +45,16 @@ class Home extends Component {
         return (
           <li className="list-group-item liStyle" key={item.key}>
             {item.item}
+            <button type="button" className="close" aria-label="Close">
+              <span
+                id={item.key}
+                value={item.key}
+                onClick={this.removeTodo}
+                aria-hidden="true"
+              >
+                &times;
+              </span>
+            </button>
           </li>
         );
       });
