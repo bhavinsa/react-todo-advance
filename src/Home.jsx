@@ -42,7 +42,13 @@ class Home extends Component {
     return (
       <div>
         <br />
+
+        {/* render the Component passed html here */}
         {children}
+
+        {/* How to use parent prop variable */}
+        <div>{this.state.name}</div>
+        <br />
         <input
           type="button"
           value="call parent event"
