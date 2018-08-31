@@ -24,7 +24,7 @@ class App extends Component {
             render={props => (
               <Home {...props} name={"bhavin"} onChildCall={this.parentEvent}>
                 <div className="p-3 mb-2 bg-dark text-white">
-                  Hello From App
+                  Hello From App component - html
                 </div>
               </Home>
             )}
