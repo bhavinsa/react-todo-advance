@@ -4,10 +4,10 @@ const $ = window.$;
 class Home extends Component {
   constructor(props) {
     super(props);
-
+    console.log(this.props.name);
     this.state = {
-      name: this.props.value.name,
-      item: "This is list item",
+      name: this.props.name,
+      item: "",
       itemList: [],
       i: 1
     };
@@ -17,13 +17,15 @@ class Home extends Component {
   }
 
   addTodo(event) {
-    this.state.itemList.push({
-      key: this.state.i,
-      item: this.state.item
-    });
-    $("#todo").val("");
-    this.setState({ i: this.state.i + 1 });
-    event.preventDefault();
+    if (this.state.item != "") {
+      this.state.itemList.push({
+        key: this.state.i,
+        item: this.state.item
+      });
+      $("#todo").val("");
+      this.setState({ i: this.state.i + 1 });
+      event.preventDefault();
+    }
   }
 
   removeTodo(event) {
@@ -63,13 +65,14 @@ class Home extends Component {
 
     return (
       <div>
+        <div className="p-3 mb-2 bg-primary text-white">Home page!!</div>
         <br />
 
         {/* render the Component passed html here */}
         {children}
 
         {/* How to use parent prop variable */}
-        <div>{this.state.name}</div>
+        {/* <div>{this.state.name}</div> */}
         <br />
         <input
           type="button"
