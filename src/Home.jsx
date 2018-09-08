@@ -28,8 +28,7 @@ class Home extends Component {
     event.preventDefault();
   }
 
-  removeTodo(event) {
-    const id = event.target.id;
+  removeTodo(id) {
     const remainder = this.state.itemList.filter(todo => {
       if (todo.key != id) {
         return true;
@@ -51,7 +50,7 @@ class Home extends Component {
               <span
                 id={item.key}
                 value={item.key}
-                onClick={this.removeTodo.bind(this)}
+                onClick={this.removeTodo.bind(this, item.key)}
                 aria-hidden="true"
               >
                 &times;
