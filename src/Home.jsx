@@ -8,8 +8,7 @@ class Home extends Component {
     this.state = {
       name: this.props.name,
       item: "",
-      itemList: [],
-      i: 1
+      itemList: []
     };
 
     this.addTodo = this.addTodo.bind(this);
@@ -17,15 +16,19 @@ class Home extends Component {
   }
 
   addTodo(event) {
-    if (this.state.item != "") {
-      this.state.itemList.push({
-        key: this.state.i,
-        item: this.state.item
+    if (this.refs.todoref.value != "") {
+      let itemList = this.state.itemList;
+      itemList.push({
+        key: new Date().valueOf(),
+        item: this.refs.todoref.value
       });
       $("#todo").val("");
-      this.setState({ i: this.state.i + 1 });
-      event.preventDefault();
+      this.refs.todoref.value = "";
+      this.setState({ itemList: itemList });
+    } else {
+      alert("Please enter todo.");
     }
+    event.preventDefault();
   }
 
   removeTodo(event) {
@@ -89,7 +92,8 @@ class Home extends Component {
               type="text"
               name="todo"
               id="todo"
-              onChange={event => this.setState({ item: event.target.value })}
+              ref="todoref"
+              // onChange={event => this.setState({ item: event.target.value })}
             />
             <input
               className="form-control"
