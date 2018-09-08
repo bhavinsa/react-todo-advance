@@ -10,9 +10,6 @@ class Home extends Component {
       item: "",
       itemList: []
     };
-
-    this.addTodo = this.addTodo.bind(this);
-    this.removeTodo = this.removeTodo.bind(this);
   }
 
   addTodo(event) {
@@ -54,7 +51,7 @@ class Home extends Component {
               <span
                 id={item.key}
                 value={item.key}
-                onClick={this.removeTodo}
+                onClick={this.removeTodo.bind(this)}
                 aria-hidden="true"
               >
                 &times;
@@ -84,7 +81,7 @@ class Home extends Component {
           onClick={this.props.onChildCall}
         />
         <br />
-        <form onSubmit={this.addTodo}>
+        <form onSubmit={this.addTodo.bind(this)}>
           <br />
           <div className="input-group input-group-sm">
             <input
@@ -100,7 +97,7 @@ class Home extends Component {
               type="button"
               value="Add"
               className="btn btn-primary"
-              onClick={this.addTodo}
+              onClick={this.addTodo.bind(this)}
             />
           </div>
         </form>
